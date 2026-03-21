@@ -8,6 +8,8 @@
   border-radius: 0;
   border-right: 1px solid var(--glass-border);
   background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
 }
 
 .user-header {
@@ -64,8 +66,13 @@
 }
 
 @keyframes rotateBg {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .toolbar {

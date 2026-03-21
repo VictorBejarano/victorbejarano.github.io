@@ -10,9 +10,10 @@
 :root {
   --bg-color: #f0f4f8;
   --text-color: #1a202c;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  --glass-blur: 10px;
   --border-radius-bento: 24px;
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
@@ -22,9 +23,9 @@
 body.dark-theme {
   --bg-color: #0b1121;
   --text-color: #f8fafc;
-  --glass-bg: rgba(15, 23, 42, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -44,13 +45,21 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-h1, h2, h3, h4, h5, h6, p, a, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span {
   color: var(--text-color);
   margin-top: 0;
 }
 
 // Material Component Color Overrides
-.mat-mdc-button-base, 
+.mat-mdc-button-base,
 .mat-mdc-list-item,
 .mat-mdc-list-item-title,
 .mat-mdc-list-item-content,
@@ -76,10 +85,11 @@ mat-toolbar.glass-card {
 // Global Glass Menu Style
 .glass-menu {
   background: var(--glass-bg) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%) !important;
   border: 1px solid var(--glass-border) !important;
   border-radius: 12px !important;
+  box-shadow: var(--glass-shadow) !important;
 }
 
 *,
@@ -102,14 +112,38 @@ mat-toolbar.glass-card {
 }
 
 .glass-card {
+  position: relative;
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
   border-radius: var(--border-radius-bento);
   padding: 1.5rem;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+  overflow: hidden;
+
+  // Inner highlight effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 50%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Ensure content is above the pseudo-element highlight
+  >* {
+    position: relative;
+    z-index: 1;
+  }
 
   &:hover {
     transform: translateY(-2px);
