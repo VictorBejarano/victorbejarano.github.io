@@ -31,6 +31,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private store = inject(Store);
   private translate = inject(TranslateService);
   private themeSubscription?: Subscription;
+  private langSubscription?: Subscription;
 
   isDarkMode$ = this.store.select(selectIsDarkMode);
   currentLanguage$ = this.store.select(selectLanguage);
@@ -116,10 +117,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.themeSubscription = this.isDarkMode$.subscribe(isDark => {
       this.applyTheme(isDark);
     });
+    this.langSubscription = this.currentLanguage$.subscribe(lang => {
+      this.translate.use(lang);
+    });
   }
 
   ngOnDestroy() {
     this.themeSubscription?.unsubscribe();
+    this.langSubscription?.unsubscribe();
   }
 
   toggleTheme() {
