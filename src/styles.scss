@@ -44,7 +44,7 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p, a, span {
   color: var(--text-color);
   margin-top: 0;
 }
@@ -56,6 +56,8 @@ h1, h2, h3, h4, h5, h6 {
 .mat-mdc-list-item-content,
 .mdc-list-item__primary-text,
 .mdc-list-item__secondary-text,
+.mat-mdc-dialog-content,
+.mat-mdc-dialog-title,
 .mat-icon,
 mat-toolbar {
   color: var(--text-color) !important;
@@ -63,6 +65,12 @@ mat-toolbar {
 
 mat-toolbar.glass-card {
   background: var(--glass-bg) !important;
+}
+
+// Dialog DARK theme support
+.dark-theme .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
 }
 
 *,

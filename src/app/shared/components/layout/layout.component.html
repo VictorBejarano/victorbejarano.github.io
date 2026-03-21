@@ -30,6 +30,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content class="content-container">
+    <div class="particles-bg-fallback"></div>
+    <ngx-particles class="particles-bg" [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ngx-particles>
+    
     <mat-toolbar color="transparent" class="toolbar glass-card">
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>

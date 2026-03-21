@@ -1,7 +1,7 @@
 {
   "HOME": {
     "GREETING": "Hello, I am",
-    "VIEW_PROFILE": "View Profile"
+    "INTRO": "Welcome to my interactive portfolio."
   },
   "NAV": {
     "HOME": "Home",
