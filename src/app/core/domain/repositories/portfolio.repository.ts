@@ -5,8 +5,8 @@ import { Experience } from '../models/experience.model';
 import { Project } from '../models/project.model';
 
 export abstract class PortfolioRepository {
-  abstract getProfile(): Observable<Profile>;
-  abstract getStudies(): Observable<Study[]>;
-  abstract getExperience(): Observable<Experience[]>;
-  abstract getProjects(): Observable<Project[]>;
+  abstract getProfile(lang: string): Observable<Profile>;
+  abstract getStudies(lang: string): Observable<Study[]>;
+  abstract getExperience(lang: string): Observable<Experience[]>;
+  abstract getProjects(lang: string): Observable<Project[]>;
 }
