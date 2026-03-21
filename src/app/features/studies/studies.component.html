@@ -1,0 +1,8 @@
+<div class="bento-container">
+  <div class="glass-card" *ngFor="let study of studies$ | async">
+    <h3>{{ study.degreeOrCourse }}</h3>
+    <h4>{{ study.institution }}</h4>
+    <p class="dates">{{ study.startDate }} - {{ study.endDate || 'Present' }}</p>
+    <span class="badge">{{ study.type }}</span>
+  </div>
+</div>

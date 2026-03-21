@@ -1,0 +1,80 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+// Load prebuilt theme to avoid SCSS function compilation issues
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// ----------------------------------------
+// GLOBAL CSS VARIABLES (Bento Grid, Glassmorphism)
+// ----------------------------------------
+:root {
+  --bg-color: #f0f4f8;
+  --text-color: #1a202c;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  --border-radius-bento: 24px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+.dark-theme,
+body.dark-theme {
+  --bg-color: #0b1121;
+  --text-color: #f8fafc;
+  --glass-bg: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+// ----------------------------------------
+// GLOBAL RESETS & TYPOGRAPHY
+// ----------------------------------------
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+// ----------------------------------------
+// BENTO GRID CLASSES
+// ----------------------------------------
+.bento-container {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--border-radius-bento);
+  padding: 1.5rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+  }
+}

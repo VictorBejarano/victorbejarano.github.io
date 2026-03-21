@@ -1,0 +1,8 @@
+<div class="home-container">
+  <div class="particles-bg-fallback"></div>
+  <ngx-particles class="particles-bg" [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ngx-particles>
+  <div class="glass-card hero-card" *ngIf="profile$ | async as profile">
+    <h1>{{ 'HOME.GREETING' | translate }} <strong>{{ profile.name }}</strong></h1>
+    <h2 class="dynamic-role">{{ profile.dynamicRole }}</h2>
+  </div>
+</div>

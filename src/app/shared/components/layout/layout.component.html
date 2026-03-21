@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container" [class.dark-theme]="isDarkMode$ | async">
+  
+  <mat-sidenav #sidenav mode="side" opened class="glass-card sidenav">
+    <div class="user-header">
+      <mat-icon>account_circle</mat-icon>
+      <h2>Victor Bejarano</h2>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle(false)">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span matListItemTitle>{{ 'NAV.HOME' | translate }}</span>
+      </a>
+      <a mat-list-item routerLink="/profiles" routerLinkActive="active" (click)="sidenav.toggle(false)">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span matListItemTitle>{{ 'NAV.PROFILES' | translate }}</span>
+      </a>
+      <a mat-list-item routerLink="/studies" routerLinkActive="active" (click)="sidenav.toggle(false)">
+        <mat-icon matListItemIcon>school</mat-icon>
+        <span matListItemTitle>{{ 'NAV.STUDIES' | translate }}</span>
+      </a>
+      <a mat-list-item routerLink="/experience" routerLinkActive="active" (click)="sidenav.toggle(false)">
+        <mat-icon matListItemIcon>work</mat-icon>
+        <span matListItemTitle>{{ 'NAV.EXPERIENCE' | translate }}</span>
+      </a>
+      <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="sidenav.toggle(false)">
+        <mat-icon matListItemIcon>code</mat-icon>
+        <span matListItemTitle>{{ 'NAV.PROJECTS' | translate }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="content-container">
+    <mat-toolbar color="transparent" class="toolbar glass-card">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      
+      <button mat-button (click)="switchLanguage('en')">EN</button>
+      <button mat-button (click)="switchLanguage('es')">ES</button>
+      <button mat-icon-button (click)="toggleTheme()">
+        <mat-icon>{{ (isDarkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="main-content">
+       <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

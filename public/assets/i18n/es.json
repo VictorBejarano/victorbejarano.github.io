@@ -1,0 +1,13 @@
+{
+  "HOME": {
+    "GREETING": "Hola, soy",
+    "VIEW_PROFILE": "Ver Perfil"
+  },
+  "NAV": {
+    "HOME": "Inicio",
+    "PROFILES": "Perfiles",
+    "STUDIES": "Estudios",
+    "EXPERIENCE": "Experiencia",
+    "PROJECTS": "Proyectos"
+  }
+}

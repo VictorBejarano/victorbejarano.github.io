@@ -1,0 +1,10 @@
+<div class="bento-container" *ngIf="profile$ | async as profile">
+  <div class="glass-card professional-profile">
+    <h2>Professional Profile</h2>
+    <p>{{ profile.professionalSummary }}</p>
+  </div>
+  <div class="glass-card personal-profile">
+    <h2>Personal Profile</h2>
+    <p>{{ profile.personalSummary }}</p>
+  </div>
+</div>

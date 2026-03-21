@@ -1,0 +1,14 @@
+<h2 mat-dialog-title class="dialog-title">{{ data.title }}</h2>
+<mat-dialog-content class="dialog-content">
+  <img *ngIf="data.imageUrl" [src]="data.imageUrl" alt="{{ data.title }}" class="project-img" />
+  <p class="description">{{ data.fullDescription }}</p>
+  
+  <div class="tech-stack" *ngIf="data.technologies.length">
+    <span class="tech-badge" *ngFor="let tech of data.technologies">{{ tech }}</span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <a mat-button color="accent" *ngIf="data.repoUrl" [href]="data.repoUrl" target="_blank">Git</a>
+  <a mat-button color="primary" *ngIf="data.liveUrl" [href]="data.liveUrl" target="_blank">Live</a>
+</mat-dialog-actions>
