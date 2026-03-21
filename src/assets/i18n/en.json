@@ -1,0 +1,13 @@
+{
+  "HOME": {
+    "GREETING": "Hello, I am",
+    "INTRO": "Welcome to my interactive portfolio."
+  },
+  "NAV": {
+    "HOME": "Home",
+    "PROFILES": "Profiles",
+    "STUDIES": "Studies",
+    "EXPERIENCE": "Experience",
+    "PROJECTS": "Projects"
+  }
+}
