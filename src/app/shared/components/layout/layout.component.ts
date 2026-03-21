@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -10,6 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { selectIsDarkMode } from '../../../core/presentation/store/portfolio.selectors';
 import { toggleTheme, setLanguage } from '../../../core/presentation/store/portfolio.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -22,17 +23,33 @@ import { toggleTheme, setLanguage } from '../../../core/presentation/store/portf
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit, OnDestroy {
   private store = inject(Store);
   private translate = inject(TranslateService);
+  private themeSubscription?: Subscription;
 
   isDarkMode$ = this.store.select(selectIsDarkMode);
 
+  ngOnInit() {
+    this.themeSubscription = this.isDarkMode$.subscribe(isDark => {
+      this.applyTheme(isDark);
+    });
+  }
+
+  ngOnDestroy() {
+    this.themeSubscription?.unsubscribe();
+  }
+
   toggleTheme() {
     this.store.dispatch(toggleTheme());
-    // The class is toggled on the sidenav container using [class.dark-theme], 
-    // but we can also apply it to the body for global effect.
-    document.body.classList.toggle('dark-theme');
+  }
+
+  private applyTheme(isDark: boolean) {
+    if (isDark) {
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+    }
   }
 
   switchLanguage(lang: string) {

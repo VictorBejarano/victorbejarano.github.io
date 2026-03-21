@@ -44,6 +44,27 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  margin-top: 0;
+}
+
+// Material Component Color Overrides
+.mat-mdc-button-base, 
+.mat-mdc-list-item,
+.mat-mdc-list-item-title,
+.mat-mdc-list-item-content,
+.mdc-list-item__primary-text,
+.mdc-list-item__secondary-text,
+.mat-icon,
+mat-toolbar {
+  color: var(--text-color) !important;
+}
+
+mat-toolbar.glass-card {
+  background: var(--glass-bg) !important;
+}
+
 *,
 *::before,
 *::after {
