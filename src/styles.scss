@@ -73,6 +73,15 @@ mat-toolbar.glass-card {
   color: var(--text-color) !important;
 }
 
+// Global Glass Menu Style
+.glass-menu {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+}
+
 *,
 *::before,
 *::after {

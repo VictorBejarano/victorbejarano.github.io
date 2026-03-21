@@ -39,9 +39,21 @@
       </button>
       <span class="spacer"></span>
       
-      <button mat-button (click)="switchLanguage('en')">EN</button>
-      <button mat-button (click)="switchLanguage('es')">ES</button>
-      <button mat-icon-button (click)="toggleTheme()">
+      <button mat-button [matMenuTriggerFor]="langMenu" class="lang-selector">
+        {{ (currentLanguage$ | async) | uppercase }}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+
+      <mat-menu #langMenu="matMenu" class="glass-menu">
+        <button mat-menu-item (click)="switchLanguage('en')">
+          <span>English</span>
+        </button>
+        <button mat-menu-item (click)="switchLanguage('es')">
+          <span>Español</span>
+        </button>
+      </mat-menu>
+
+      <button mat-icon-button (click)="toggleTheme()" class="theme-toggle">
         <mat-icon>{{ (isDarkMode$ | async) ? 'light_mode' : 'dark_mode' }}</mat-icon>
       </button>
     </mat-toolbar>

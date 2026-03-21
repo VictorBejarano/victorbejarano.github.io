@@ -6,9 +6,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { selectIsDarkMode } from '../../../core/presentation/store/portfolio.selectors';
+import { selectIsDarkMode, selectLanguage } from '../../../core/presentation/store/portfolio.selectors';
 import { toggleTheme, setLanguage } from '../../../core/presentation/store/portfolio.actions';
 import { Subscription } from 'rxjs';
 import { NgxParticlesModule } from "@tsparticles/angular";
@@ -20,7 +21,7 @@ import { loadFull } from "tsparticles";
   standalone: true,
   imports: [
     CommonModule, RouterOutlet, RouterLink, RouterLinkActive,
-    MatSidenavModule, MatListModule, MatIconModule, MatButtonModule, MatToolbarModule,
+    MatSidenavModule, MatListModule, MatIconModule, MatButtonModule, MatToolbarModule, MatMenuModule,
     TranslateModule, NgxParticlesModule
   ],
   templateUrl: './layout.component.html',
@@ -32,6 +33,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private themeSubscription?: Subscription;
 
   isDarkMode$ = this.store.select(selectIsDarkMode);
+  currentLanguage$ = this.store.select(selectLanguage);
 
   // Particles Configuration
   id = "tsparticles";

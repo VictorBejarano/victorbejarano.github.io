@@ -70,11 +70,26 @@
 
 .toolbar {
   margin: 1rem;
+  padding: 0 1rem;
   border-radius: var(--border-radius-bento);
   display: flex;
   align-items: center;
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
+
+  .lang-selector {
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 48px;
+    border-radius: 12px;
+  }
+
+  .theme-toggle {
+    margin-left: 0.5rem;
+  }
 }
 
 .spacer {
