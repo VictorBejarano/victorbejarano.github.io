@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
-    "build:github": "ng build --configuration production --base-href / && npx gh-pages -d docs -b gh-pages"
+    "build:github": "ng build --configuration production --base-href / && cp docs/index.html docs/404.html"
   },
   "private": true,
   "packageManager": "npm@10.9.4",
