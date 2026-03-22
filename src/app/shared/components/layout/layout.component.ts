@@ -12,6 +12,8 @@ import { Store } from '@ngrx/store';
 import { selectIsDarkMode, selectLanguage } from '../../../core/presentation/store/portfolio.selectors';
 import { toggleTheme, setLanguage } from '../../../core/presentation/store/portfolio.actions';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NgxParticlesModule } from "@tsparticles/angular";
 import { MoveDirection, OutMode, type Engine, type ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
@@ -35,6 +37,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   isDarkMode$ = this.store.select(selectIsDarkMode);
   currentLanguage$ = this.store.select(selectLanguage);
+
+  private breakpointObserver = inject(BreakpointObserver);
+  isMobile$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(result => result.matches)
+  );
 
   // Particles Configuration
   id = "tsparticles";

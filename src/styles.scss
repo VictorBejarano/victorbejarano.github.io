@@ -109,6 +109,12 @@ mat-toolbar.glass-card {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+  }
 }
 
 .glass-card {
@@ -122,6 +128,10 @@ mat-toolbar.glass-card {
   padding: 1.5rem;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 
   // Inner highlight effect
   &::before {

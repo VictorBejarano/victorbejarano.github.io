@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container" [class.dark-theme]="isDarkMode$ | async">
   
-  <mat-sidenav #sidenav mode="side" opened class="glass-card sidenav">
+  <mat-sidenav #sidenav [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="!(isMobile$ | async)" class="glass-card sidenav">
     <div class="user-header">
       <mat-icon>account_circle</mat-icon>
       <h2>Victor Bejarano</h2>
