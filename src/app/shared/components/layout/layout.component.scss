@@ -10,6 +10,15 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur)) saturate(180%);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  overflow-x: hidden !important;
+
+  @media (max-width: 768px) {
+    // On mobile, the sidenav is an overlay and needs to be more opaque for readability
+    background: color-mix(in srgb, var(--bg-color), transparent 10%) !important;
+    backdrop-filter: blur(25px) saturate(150%);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.3);
+    border-right: none;
+  }
 }
 
 .user-header {
@@ -32,7 +41,27 @@
 }
 
 .active {
-  background: color-mix(in srgb, var(--text-color), transparent 90%);
+  background: color-mix(in srgb, var(--text-color), transparent 90%) !important;
+  color: var(--text-color) !important;
+  font-weight: 600 !important;
+}
+
+mat-nav-list a {
+  color: var(--text-color) !important;
+  margin: 4px 12px;
+  width: auto !important;
+  border-radius: 12px;
+  overflow: hidden;
+  
+  mat-icon {
+    color: var(--text-color) !important;
+    opacity: 0.8;
+  }
+
+  &.active mat-icon {
+    opacity: 1;
+    color: #4da6ff !important; // Some accent color for active icons
+  }
 }
 
 .content-container {
