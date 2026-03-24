@@ -35,10 +35,13 @@ body.dark-theme {
 // ----------------------------------------
 html,
 body {
-  height: 100%;
+  height: 100%; // Fallback
+  height: 100dvh; // Standard for modern mobile browsers
+  min-height: -webkit-fill-available; // Fix for some mobile browsers
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
   font-family: 'Inter', Roboto, "Helvetica Neue", sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);

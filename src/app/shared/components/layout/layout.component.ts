@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { selectIsDarkMode, selectLanguage } from '../../../core/presentation/store/portfolio.selectors';
-import { toggleTheme, setLanguage } from '../../../core/presentation/store/portfolio.actions';
+import { toggleTheme, setLanguage, loadPortfolioData } from '../../../core/presentation/store/portfolio.actions';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -121,6 +121,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.store.dispatch(loadPortfolioData());
     this.themeSubscription = this.isDarkMode$.subscribe(isDark => {
       this.applyTheme(isDark);
     });
@@ -141,8 +142,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private applyTheme(isDark: boolean) {
     if (isDark) {
       document.body.classList.add('dark-theme');
+      document.documentElement.classList.add('dark-theme');
     } else {
       document.body.classList.remove('dark-theme');
+      document.documentElement.classList.remove('dark-theme');
     }
   }
 

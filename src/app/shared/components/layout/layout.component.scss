@@ -1,6 +1,7 @@
 .sidenav-container {
-  height: 100vh;
-  background-color: transparent;
+  height: 100%; // Fallback
+  height: 100dvh;
+  background-color: var(--bg-color) !important;
 }
 
 .sidenav {
@@ -68,8 +69,9 @@ mat-nav-list a {
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%; // Ensure it fills the sidenav-container
   z-index: 1;
-  background: transparent;
+  background-color: var(--bg-color) !important;
   overflow: hidden; // Contain the particles
 }
 
@@ -119,7 +121,7 @@ mat-nav-list a {
   @media (max-width: 768px) {
     margin: 0.5rem;
     max-width: calc(100% - 1rem);
-    padding: 0 0.5rem;
+    padding: 0 0.2rem;
   }
 
   .lang-selector {
@@ -146,6 +148,8 @@ mat-nav-list a {
   overflow-y: auto;
   position: relative;
   z-index: 1;
+  /* Support for mobile smooth scrolling */
+  -webkit-overflow-scrolling: touch;
 
   @media (max-width: 768px) {
     padding: 0.5rem;
