@@ -5,7 +5,8 @@ import { of, forkJoin } from 'rxjs';
 import { map, mergeMap, catchError, withLatestFrom } from 'rxjs/operators';
 import * as PortfolioActions from './portfolio.actions';
 import { PortfolioRepository } from '../../domain/repositories/portfolio.repository';
-import { selectLanguage } from './portfolio.selectors';
+import { selectLanguage, selectIsDarkMode } from './portfolio.selectors';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class PortfolioEffects {
@@ -29,5 +30,28 @@ export class PortfolioEffects {
         )
       )
     )
+  );
+
+  persistTheme$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PortfolioActions.toggleTheme),
+      withLatestFrom(this.store.select(selectIsDarkMode)),
+      tap(([_, isDarkMode]) => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
+        }
+      })
+    ), { dispatch: false }
+  );
+
+  persistLanguage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PortfolioActions.setLanguage),
+      tap(({ language }) => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('language', language);
+        }
+      })
+    ), { dispatch: false }
   );
 }

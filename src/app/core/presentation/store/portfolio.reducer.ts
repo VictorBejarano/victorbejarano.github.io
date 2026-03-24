@@ -16,6 +16,10 @@ export interface PortfolioState {
   language: string;
 }
 
+const isBrowser = typeof window !== 'undefined';
+const savedTheme = isBrowser ? localStorage.getItem('isDarkMode') : null;
+const savedLang = isBrowser ? localStorage.getItem('language') : null;
+
 export const initialState: PortfolioState = {
   profile: null,
   studies: [],
@@ -23,8 +27,8 @@ export const initialState: PortfolioState = {
   projects: [],
   loading: false,
   error: null,
-  isDarkMode: true,
-  language: 'es'
+  isDarkMode: savedTheme !== null ? JSON.parse(savedTheme) : true,
+  language: savedLang || 'es'
 };
 
 export const portfolioReducer = createReducer(
