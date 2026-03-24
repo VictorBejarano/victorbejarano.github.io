@@ -9,9 +9,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { selectIsDarkMode, selectLanguage } from '../../../core/presentation/store/portfolio.selectors';
+import { selectIsDarkMode, selectLanguage, selectProfile } from '../../../core/presentation/store/portfolio.selectors';
 import { toggleTheme, setLanguage, loadPortfolioData } from '../../../core/presentation/store/portfolio.actions';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { NgxParticlesModule } from "@tsparticles/angular";
@@ -37,6 +37,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   isDarkMode$ = this.store.select(selectIsDarkMode);
   currentLanguage$ = this.store.select(selectLanguage);
+  profile$ = this.store.select(selectProfile);
 
   private breakpointObserver = inject(BreakpointObserver);
   isMobile$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(

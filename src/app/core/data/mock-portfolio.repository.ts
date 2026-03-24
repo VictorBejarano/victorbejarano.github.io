@@ -19,7 +19,8 @@ export class MockPortfolioRepository extends PortfolioRepository {
         dynamicRole: 'Desarrollador Full Stack Senior | Ingeniero Mecatrónico',
         professionalSummary: 'Desarrollador de software experimentado con un fuerte enfoque en arquitectura frontend e integraciones en la nube...',
         personalSummary: 'Me encanta aprender sobre IA y experimentar con nuevas tecnologías.',
-        email: 'victor@example.com'
+        email: 'victor@example.com',
+        imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop'
       },
       en: {
         id: '1',
@@ -27,7 +28,8 @@ export class MockPortfolioRepository extends PortfolioRepository {
         dynamicRole: 'Senior Full Stack Developer | Mechatronics Engineer',
         professionalSummary: 'Experienced software developer with a strong focus on frontend architecture and cloud integrations...',
         personalSummary: 'I love learning about AI and experimenting with new tech.',
-        email: 'victor@example.com'
+        email: 'victor@example.com',
+        imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop'
       }
     };
     return of(profiles[lang] || profiles['es']).pipe(delay(300));
