@@ -137,7 +137,22 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme() {
-    this.store.dispatch(toggleTheme());
+    const isBrowser = typeof window !== 'undefined';
+    if (!isBrowser) return;
+
+    if ('startViewTransition' in document) {
+      (document as any).startViewTransition(() => {
+        this.store.dispatch(toggleTheme());
+      });
+    } else {
+        // Fallback for browsers that don't support View Transition API
+        const doc = document as any;
+        doc.documentElement.classList.add('theme-transitioning');
+        this.store.dispatch(toggleTheme());
+        setTimeout(() => {
+          doc.documentElement.classList.remove('theme-transitioning');
+        }, 500);
+    }
   }
 
   private applyTheme(isDark: boolean) {
