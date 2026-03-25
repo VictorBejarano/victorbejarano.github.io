@@ -114,10 +114,39 @@ mat-toolbar.glass-card {
   background: var(--glass-bg) !important;
 }
 
-// Dialog DARK theme support
-.dark-theme .mat-mdc-dialog-container .mdc-dialog__surface {
-  background-color: var(--bg-color) !important;
+// ----------------------------------------
+// DIALOGS & OVERLAYS PREMIUM DESIGN
+// ----------------------------------------
+.cdk-overlay-backdrop {
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background: var(--bg-color) !important; // Fallback
+  background: color-mix(in srgb, var(--bg-color) 95%, transparent) !important;
   color: var(--text-color) !important;
+  border-radius: 12px !important; // Reduced from 24px (bento) for less rounded corners
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+}
+
+// Apply an elegant pop-in animation wrapper for dialog containers
+// Angular adds .mat-mdc-dialog-container to the DOM
+.mat-mdc-dialog-container {
+  animation: modalEnter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes modalEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 // Global Glass Menu Style
