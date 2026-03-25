@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -205,5 +205,18 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
+
+  private router = inject(Router);
+
+  closeAndNavigate(path: string, sidenav: any) {
+    const isMobile = window.innerWidth <= 768; // simple check for mobile without subscription delays
+    if (isMobile) {
+      sidenav.close().then(() => {
+        this.router.navigate([path]);
+      });
+    } else {
+      this.router.navigate([path]);
+    }
   }
 }

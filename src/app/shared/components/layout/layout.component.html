@@ -11,23 +11,23 @@
       <h2 [@textPulse]="currentLanguage$ | async">{{ profile.name }}</h2>
     </div>
     <mat-nav-list [@textPulse]="currentLanguage$ | async">
-      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 100 } }">
+      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="$event.preventDefault(); closeAndNavigate('/home', sidenav)" [@menuItemAnimation]="{ value: '', params: { delay: 100 } }">
         <mat-icon matListItemIcon>home</mat-icon>
         <span matListItemTitle>{{ 'NAV.HOME' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/profiles" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 200 } }">
+      <a mat-list-item routerLink="/profiles" routerLinkActive="active" (click)="$event.preventDefault(); closeAndNavigate('/profiles', sidenav)" [@menuItemAnimation]="{ value: '', params: { delay: 200 } }">
         <mat-icon matListItemIcon>person</mat-icon>
         <span matListItemTitle>{{ 'NAV.PROFILES' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/studies" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 300 } }">
+      <a mat-list-item routerLink="/studies" routerLinkActive="active" (click)="$event.preventDefault(); closeAndNavigate('/studies', sidenav)" [@menuItemAnimation]="{ value: '', params: { delay: 300 } }">
         <mat-icon matListItemIcon>school</mat-icon>
         <span matListItemTitle>{{ 'NAV.STUDIES' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/experience" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 400 } }">
+      <a mat-list-item routerLink="/experience" routerLinkActive="active" (click)="$event.preventDefault(); closeAndNavigate('/experience', sidenav)" [@menuItemAnimation]="{ value: '', params: { delay: 400 } }">
         <mat-icon matListItemIcon>work</mat-icon>
         <span matListItemTitle>{{ 'NAV.EXPERIENCE' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 500 } }">
+      <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="$event.preventDefault(); closeAndNavigate('/projects', sidenav)" [@menuItemAnimation]="{ value: '', params: { delay: 500 } }">
         <mat-icon matListItemIcon>code</mat-icon>
         <span matListItemTitle>{{ 'NAV.PROJECTS' | translate }}</span>
       </a>
