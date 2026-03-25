@@ -71,6 +71,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   isDarkMode$ = this.store.select(selectIsDarkMode);
   currentLanguage$ = this.store.select(selectLanguage);
   profile$ = this.store.select(selectProfile);
+  appVersion: string = '1.0.0';
 
   private breakpointObserver = inject(BreakpointObserver);
   isMobile$ = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
