@@ -37,4 +37,29 @@
       font-size: 1.1rem;
     }
   }
+
+  .social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+    a[mat-icon-button] {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      mat-icon {
+        color: var(--text-color) !important;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        background: color-mix(in srgb, var(--bg-color), var(--text-color) 15%);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        border-color: color-mix(in srgb, var(--text-color) 30%, transparent);
+      }
+    }
+  }
 }

@@ -20,6 +20,9 @@ export class MockPortfolioRepository extends PortfolioRepository {
         professionalSummary: 'Desarrollador de software experimentado con un fuerte enfoque en arquitectura frontend e integraciones en la nube...',
         personalSummary: 'Me encanta aprender sobre IA y experimentar con nuevas tecnologías.',
         email: 'victor@example.com',
+        githubUrl: 'https://github.com/VictorBejarano',
+        linkedinUrl: 'https://linkedin.com/in/victor-bejarano',
+        whatsappUrl: 'https://wa.me/something',
         imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop'
       },
       en: {
@@ -29,6 +32,9 @@ export class MockPortfolioRepository extends PortfolioRepository {
         professionalSummary: 'Experienced software developer with a strong focus on frontend architecture and cloud integrations...',
         personalSummary: 'I love learning about AI and experimenting with new tech.',
         email: 'victor@example.com',
+        githubUrl: 'https://github.com/VictorBejarano',
+        linkedinUrl: 'https://linkedin.com/in/victor-bejarano',
+        whatsappUrl: 'https://wa.me/something',
         imageUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&h=200&auto=format&fit=crop'
       }
     };
