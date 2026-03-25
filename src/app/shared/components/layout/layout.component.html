@@ -1,33 +1,33 @@
 <mat-sidenav-container class="sidenav-container" [class.dark-theme]="isDarkMode$ | async">
   
   <mat-sidenav #sidenav [mode]="(isMobile$ | async) ? 'over' : 'side'" [opened]="!(isMobile$ | async)" class="glass-card sidenav">
-    <div class="user-header" *ngIf="profile$ | async as profile">
+    <div class="user-header" *ngIf="profile$ | async as profile" [@textPulse]="currentLanguage$ | async">
       <div class="profile-img-container">
         <img *ngIf="profile.imageUrl; else defaultIcon" [src]="profile.imageUrl" [alt]="profile.name" class="profile-img">
         <ng-template #defaultIcon>
           <mat-icon>account_circle</mat-icon>
         </ng-template>
       </div>
-      <h2>{{ profile.name }}</h2>
+      <h2 [@textPulse]="currentLanguage$ | async">{{ profile.name }}</h2>
     </div>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="sidenav.toggle(false)">
+    <mat-nav-list [@textPulse]="currentLanguage$ | async">
+      <a mat-list-item routerLink="/home" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 100 } }">
         <mat-icon matListItemIcon>home</mat-icon>
         <span matListItemTitle>{{ 'NAV.HOME' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/profiles" routerLinkActive="active" (click)="sidenav.toggle(false)">
+      <a mat-list-item routerLink="/profiles" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 200 } }">
         <mat-icon matListItemIcon>person</mat-icon>
         <span matListItemTitle>{{ 'NAV.PROFILES' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/studies" routerLinkActive="active" (click)="sidenav.toggle(false)">
+      <a mat-list-item routerLink="/studies" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 300 } }">
         <mat-icon matListItemIcon>school</mat-icon>
         <span matListItemTitle>{{ 'NAV.STUDIES' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/experience" routerLinkActive="active" (click)="sidenav.toggle(false)">
+      <a mat-list-item routerLink="/experience" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 400 } }">
         <mat-icon matListItemIcon>work</mat-icon>
         <span matListItemTitle>{{ 'NAV.EXPERIENCE' | translate }}</span>
       </a>
-      <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="sidenav.toggle(false)">
+      <a mat-list-item routerLink="/projects" routerLinkActive="active" (click)="(isMobile$ | async) ? sidenav.close() : null" [@menuItemAnimation]="{ value: '', params: { delay: 500 } }">
         <mat-icon matListItemIcon>code</mat-icon>
         <span matListItemTitle>{{ 'NAV.PROJECTS' | translate }}</span>
       </a>
@@ -44,7 +44,7 @@
       </button>
       <span class="spacer"></span>
       
-      <button mat-button [matMenuTriggerFor]="langMenu" class="lang-selector">
+      <button mat-button [matMenuTriggerFor]="langMenu" class="lang-selector" [@textPulse]="currentLanguage$ | async">
         {{ (currentLanguage$ | async) | uppercase }}
         <mat-icon>expand_more</mat-icon>
       </button>
@@ -63,8 +63,8 @@
       </button>
     </mat-toolbar>
 
-    <div class="main-content">
-       <router-outlet></router-outlet>
+    <div class="main-content" [@fadeAnimation]="prepareRoute(outlet)">
+       <router-outlet #outlet="outlet"></router-outlet>
     </div>
   </mat-sidenav-content>
 

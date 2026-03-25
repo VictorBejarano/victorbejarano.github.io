@@ -18,6 +18,38 @@ import { NgxParticlesModule } from "@tsparticles/angular";
 import { MoveDirection, OutMode, type Engine, type ISourceOptions } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
+import { trigger, transition, style, query, animate, group, stagger, state } from '@angular/animations';
+
+export const fadeAnimation = trigger('fadeAnimation', [
+  transition('* <=> *', [
+    query(':enter', [
+      style({ opacity: 0, transform: 'translateY(10px)', position: 'absolute', width: 'calc(100% - 2rem)' })
+    ], { optional: true }),
+    query(':leave', [
+      style({ position: 'absolute', width: 'calc(100% - 2rem)' }),
+      animate('200ms ease-out', style({ opacity: 0, transform: 'translateY(-10px)' }))
+    ], { optional: true }),
+    query(':enter', [
+      style({ position: 'relative', width: 'auto' }),
+      animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+    ], { optional: true }),
+  ]),
+]);
+
+export const menuItemAnimation = trigger('menuItemAnimation', [
+  transition(':enter', [
+    style({ opacity: 0, transform: 'translateX(-20px)' }),
+    animate('0.3s {{delay}}ms ease-out', style({ opacity: 1, transform: 'translateX(0)' }))
+  ], { params: { delay: 0 } })
+]);
+
+export const textPulse = trigger('textPulse', [
+  transition('* => *', [
+    style({ opacity: 0.5, transform: 'scale(0.98)' }),
+    animate('0.4s ease-out', style({ opacity: 1, transform: 'scale(1)' }))
+  ])
+]);
+
 @Component({
   selector: 'app-layout',
   standalone: true,
@@ -27,7 +59,8 @@ import { loadFull } from "tsparticles";
     TranslateModule, NgxParticlesModule
   ],
   templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss'
+  styleUrl: './layout.component.scss',
+  animations: [fadeAnimation, menuItemAnimation, textPulse]
 })
 export class LayoutComponent implements OnInit, OnDestroy {
   private store = inject(Store);
@@ -117,9 +150,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
     detectRetina: true,
   };
 
-  async particlesInit(engine: Engine): Promise<void> {
+  particlesInit = async (engine: Engine): Promise<void> => {
     await loadFull(engine);
-  }
+  };
 
   ngOnInit() {
     this.store.dispatch(loadPortfolioData());
@@ -168,5 +201,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
   switchLanguage(lang: string) {
     this.translate.use(lang);
     this.store.dispatch(setLanguage({ language: lang }));
+  }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }
