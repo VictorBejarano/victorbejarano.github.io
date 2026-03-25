@@ -173,7 +173,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
     const isBrowser = typeof window !== 'undefined';
     if (!isBrowser) return;
 
-    if ('startViewTransition' in document) {
+    // iOS and Safari struggle with View Transition snapshots + backdrop-filter
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1) || 
+                  /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if ('startViewTransition' in document && !isIOS) {
       (document as any).startViewTransition(() => {
         this.store.dispatch(toggleTheme());
       });
