@@ -14,12 +14,22 @@
   overflow-x: hidden !important;
 
   @media (max-width: 768px) {
-    // On mobile, the sidenav is an overlay and needs to be more opaque for readability
-    background: color-mix(in srgb, var(--bg-color), transparent 10%) !important;
-    backdrop-filter: blur(25px) saturate(150%);
-    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.3);
-    border-right: none;
+    // On mobile, the sidenav is an overlay. We use glass-bg to ensure it remains highly translucent.
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.4);
+    border-right: 1px solid var(--glass-border);
+    // iOS hardware acceleration to preserve glassmorphism
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: background;
   }
+}
+
+// Make the overlay behind the mobile menu more transparent so the glassmorphism has something colorful to blur
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 
 .user-header {
